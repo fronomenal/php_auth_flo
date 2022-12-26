@@ -9,6 +9,9 @@
 	define('VALIDATE_EMAIL_ENDPOINT', 'http://localhost:8080/pages/validateEmail');
 	define('RESET_PASSWORD_ENDPOINT', 'http://localhost:8080/pages//resetpassword');
 
+	// Database Credentials
+	define('DB_DATABASE', realpath('../db/users.db'));
+
 	// Page Startup Scripts
 	date_default_timezone_set('UTC'); 
 	error_reporting(0);
