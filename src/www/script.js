@@ -5,10 +5,18 @@ function request(url, data, cb){
   loader.className = "loader";
   document.getElementById("register-form").appendChild(loader);
 
+  formDatum = (data) ? ((data instanceof FormData) ? data : new FormData(document.getElementById(data))) : undefined
+
+  csrft = document.querySelector("meta[name='csrf_token']");
+
+  if(formDatum && csrft){
+    formDatum.append('csrf_token', csrft.getAttribute('content'));
+  }
+
   fetch(
     url, {
     method: 'POST',
-    body: (data) ? ((data instanceof FormData) ? data : new FormData(document.getElementById(data))) : undefined
+    body: formDatum
   }).then(res => {
     loader.remove();
     return res.json();
@@ -37,8 +45,8 @@ function register(){
     }
 
     setTimeout(function() {
-      document.getElementById('errs').style.transition = transition;
-      document.getElementById('errs').style.opacity = 1;
+      errList.style.transition = transition;
+      errList.style.opacity = 1;
     }, 10);
   })
 }

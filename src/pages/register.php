@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="csrf_token" content="<?php echo createToken(); ?>" />
 	<title>Register - Secure Site</title>
 	<link rel="stylesheet" href='../www/style.css' />
 	<script src='../www/script.js' defer></script>

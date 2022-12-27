@@ -28,7 +28,8 @@ $errors = ["count" => 0];
 
 
 	if($errors["count"] === 0) {
-			$C = connect();
+
+		if(isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {$C = connect();
 			if($C) {
 				
 				$res = sqlSelect($C, 'SELECT id FROM users WHERE email=?', 's', $_POST['email']);
@@ -51,6 +52,9 @@ $errors = ["count" => 0];
 			else {
 				$errors["db_error"] = "error connecting to database";
 			}
+		}else{
+			$errors["con_error"] = "csrf token validation failed";
+		}
 	}
 
 
