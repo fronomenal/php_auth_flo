@@ -3,52 +3,36 @@
 
 	function connect() {
 		try {
-		$C = new PDO("sqlite:" . DB_DATABASE);
-		return $C;
+			$C = new PDO("sqlite:" . DB_DATABASE);
+			$C->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+			return $C;
 		} catch (PDOException) {
 			return false;
 		}
 	}
 
-	function sqlSelect($C, $query, $format = false, ...$vars) {
+	function sqlSelect($C, $query, $vars = false) {
 		$stmt = $C->prepare($query);
-		if($format) {
-			$stmt->bind_param($format, ...$vars);
-		}
-		if($stmt->execute()) {
-			$res = $stmt->get_result();
-			$stmt->close();
-			return $res;
-		}
-		$stmt->close();
-		return false;
+		$res = null;
+		if($vars && $stmt->execute($vars)) $res = $stmt->fetch();
+		else if($stmt->execute()) $res = $stmt->fetch();
+		return $res;
 	}
 
-	function sqlInsert($C, $query, $format = false, ...$vars) {
+	function sqlInsert($C, $query, $vars = false) {
 		$stmt = $C->prepare($query);
-		if($format) {
-			$stmt->bind_param($format, ...$vars);
-		}
-		if($stmt->execute()) {
-			$id = $stmt->insert_id;
-			$stmt->close();
-			return $id;
-		}
-		$stmt->close();
-		return -1;
+		$id = -1;
+		if($vars && $stmt->execute($vars)) $id = $C->lastInsertId();
+		else if($stmt->execute()) $id = $C->lastInsertId();
+		return $id;
 	}
 
-	function sqlUpdate($C, $query, $format = false, ...$vars) {
+	function sqlUpdate($C, $query, $vars = false) {
 		$stmt = $C->prepare($query);
-		if($format) {
-			$stmt->bind_param($format, ...$vars);
-		}
-		if($stmt->execute()) {
-			$stmt->close();
-			return true;
-		}
-		$stmt->close();
-		return false;
+		$succ = false;
+		if($vars && $stmt->execute($vars)) $succ = true;
+		else if($stmt->execute()) $succ = true;
+		return $succ;
 	}
 
 	function urlSafeEncode($m) {
