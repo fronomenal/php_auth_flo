@@ -36,7 +36,7 @@ function register(){
 		errList.style.opacity = 0;
 
     if (data.count == 0){
-      errList.innerHTML += '<div>Your account has been created!</div><div>Please validate your email by checking here: <a href="/sec/fake-mail" target="_blank">Verify Mail</a>.</div>';
+      errList.innerHTML += '<div>Your account has been created!</div><div>Please validate your email by checking here: <a href="/sec/fake-mail.php" target="_blank">Verify Mail</a></div>';
       document.getElementById("register-form").reset();
     }else{
       for(const mem in data){
@@ -64,7 +64,7 @@ function sendValidateEmailRequest(){
 		errList.style.opacity = 0;
 
     if (data.count == 0){
-      errList.innerHTML += "<div>Email Sent... Check your email and click the link in the email to validate your email.</div>";
+      errList.innerHTML += '<div>Please validate your email by checking here: <a href="/sec/fake-mail.php" target="_blank">Verify Mail</a></div>';
     }else{
       for(const mem in data){
         if (mem == "count") continue;
