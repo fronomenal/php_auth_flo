@@ -3,7 +3,7 @@ function request(url, data, cb){
 
   let loader = document.createElement("div");
   loader.className = "loader";
-  document.getElementById("register-form").appendChild(loader);
+  document.body.appendChild(loader);
 
   formDatum = (data) ? ((data instanceof FormData) ? data : new FormData(document.getElementById(data))) : undefined
 
