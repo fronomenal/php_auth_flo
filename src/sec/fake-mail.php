@@ -1,4 +1,6 @@
 <?php
+	require_once '../incs/config.php';
+
 
 if (isset($_SESSION["VERIFY"])){
   echo $_SESSION["VERIFY"];

@@ -25,7 +25,7 @@ function request(url, data, cb){
 }
 
 function register(){
-  request("../api/register.php", "register-form", (data)=> {
+  request("/api/register.php", "register-form", (data)=> {
 
     console.log(data);
 
@@ -53,7 +53,7 @@ function register(){
 }
 
 function sendValidateEmailRequest(){
-  request("../api/sendValidationEmail.php", "validate-email-form", (data)=> {
+  request("/api/sendValidationEmail.php", "validate-email-form", (data)=> {
 
     console.log(data);
 
