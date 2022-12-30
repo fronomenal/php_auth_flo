@@ -74,4 +74,6 @@ function sendEmail($to, $toName, $subj, $msg) {
 	MAILER;
 
 	$_SESSION["VERIFY"] = $session_mail;
+
+	return true;
 }
