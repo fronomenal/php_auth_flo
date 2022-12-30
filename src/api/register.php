@@ -1,5 +1,6 @@
 <?php
-	require_once '../incs/utils.php'; 
+	require_once '../incs/utils.php';
+	require_once 'sendValidationEmail.php';
 
 	try {
 		$errors = ["count" => 0];
@@ -39,7 +40,7 @@
 						$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 						$id = sqlInsert($C, 'INSERT INTO users VALUES (NULL, ?, ?, ?, 0)', [$_POST['name'], $_POST['email'], $hash]);
 						if($id !== -1) {
-							$errors["id"] = $id;
+							sendValidationEmail($_POST['email']);
 						}else {
 							$errors["count"] = 1;
 							$errors["db_error"] = "something terrible happened";
