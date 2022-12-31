@@ -21,7 +21,6 @@
 								$_SESSION['loggedin'] = true;
 								$_SESSION['userID'] = $user['id'];
 								sqlUpdate($C, 'DELETE FROM loginattempts WHERE user=?', [$user['id']]);
-								$errors["DEBUG"] = $user["users.id"];
 							} else {
 								$id = sqlInsert($C, 'INSERT INTO loginattempts VALUES (NULL, ?, ?, ?)', [$user['id'], $_SERVER['REMOTE_ADDR'], time()]);
 								if($id !== -1) {
