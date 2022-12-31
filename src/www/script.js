@@ -5,7 +5,7 @@ function request(url, data, cb){
   loader.className = "loader";
   document.body.appendChild(loader);
 
-  formDatum = (data) ? ((data instanceof FormData) ? data : new FormData(document.getElementById(data))) : undefined
+  formDatum = (data) ? (data instanceof FormData) ? data : new FormData(document.getElementById(data)) : new FormData();
 
   csrft = document.querySelector("meta[name='csrf_token']");
 
@@ -105,5 +105,13 @@ function login(){
 
     transTimeout(transition);
   })
+}
+
+function logout() {
+	request('/api/logout.php', false, function(data) {
+		if(data === '0') {
+			window.location = '/pages/login.php';
+		}
+	});
 }
 
