@@ -24,16 +24,31 @@ function request(url, data, cb){
 
 }
 
+function prepareMsgs(){
+  errList = document.getElementById('errs');
+  let transition = errList.style.transition;
+  errList.innerHTML = "";
+  errList.style.transition = "none";
+  errList.style.opacity = 0;
+
+  return [transition, errList];
+
+}
+
+function transTimeout(transition){
+  setTimeout(function() {
+    errList.style.transition = transition;
+    errList.style.opacity = 1;
+  }, 10);
+}
+
 function register(){
   request("/api/register.php", "register-form", (data)=> {
 
     console.log(data);
 
-    errList = document.getElementById('errs');
-		let transition = errList.style.transition;
-    errList.innerHTML = "";
-		errList.style.transition = "none";
-		errList.style.opacity = 0;
+    const [transition, errList] = prepareMsgs();
+    
 
     if (data.count == 0){
       errList.innerHTML += '<div>Your account has been created!</div><div>Please validate your email by checking here: <a href="/sec/fake-mail.php" target="_blank">Verify Mail</a></div>';
@@ -45,10 +60,7 @@ function register(){
       }
     }
 
-    setTimeout(function() {
-      errList.style.transition = transition;
-      errList.style.opacity = 1;
-    }, 10);
+    transTimeout(transition);
   })
 }
 
@@ -57,14 +69,12 @@ function sendValidateEmailRequest(){
 
     console.log(data);
 
-    errList = document.getElementById('errs');
-		let transition = errList.style.transition;
-    errList.innerHTML = "";
-		errList.style.transition = "none";
-		errList.style.opacity = 0;
+    const [transition, errList] = prepareMsgs();
+    
 
     if (data.count == 0){
       errList.innerHTML += '<div>Please validate your email by checking here: <a href="/sec/fake-mail.php" target="_blank">Verify Mail</a></div>';
+      document.getElementById("validate-email-form").reset();
     }else{
       for(const mem in data){
         if (mem == "count") continue;
@@ -72,9 +82,28 @@ function sendValidateEmailRequest(){
       }
     }
 
-    setTimeout(function() {
-      errList.style.transition = transition;
-      errList.style.opacity = 1;
-    }, 10);
+    transTimeout(transition);
   })
 }
+
+function login(){
+  request("/api/login.php", "login-form", (data)=> {
+
+    console.log(data);
+
+    const [transition, errList] = prepareMsgs();
+    
+
+    if (data.count == 0){
+      window.location = '/';
+    }else{
+      for(const mem in data){
+        if (mem == "count") continue;
+        errList.innerHTML += `<div class="err">${mem} : ${data[mem]}</div>`;
+      }
+    }
+
+    transTimeout(transition);
+  })
+}
+
