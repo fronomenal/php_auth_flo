@@ -25,29 +25,26 @@
 							if(sqlUpdate($C, 'UPDATE users SET verified=1 WHERE id=?', [$request['user']])) {
 								sqlUpdate($C, 'DELETE FROM requests WHERE user=? AND type=0', [$request['user']]);
 								echo '<h2>Email Verified</h2>';
-							}
-							else {
+								echo '<a style="color: grey; text-decoration: none" class="btn" href="/pages/login.php">Log In</a>';
+							} else {
 								echo '<h2>Failed to Update Database</h2>';
 							}
-						}
-						else {
+						} else {
 							echo '<h2>Invalid Verification Request</h2>';
 						}
-					}
-					else {
+					} else {
 						echo '<h2>Verification Request Expired</h2><a href="./validate">Click here to send another one</a>';
 					}
-				}
-				else {
+				} else {
 					echo '<h2>Invalid Verification Request</h2>';
 				}
-			}
-			else {
+			} else {
 				echo '<h2>Failed to Connect to Database</h2>';
 			}
+
+			echo '<a style="color: grey; text-decoration: none" class="btn" href="/pages/validate-email.php">Back to Verify</a>';
 			echo '</div>';
-		}
-		else {
+		} else {
 			?>
 			<div class="formWrapper">
 				<form id="validate-email-form">
