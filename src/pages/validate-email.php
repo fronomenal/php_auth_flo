@@ -26,6 +26,7 @@
 								sqlUpdate($C, 'DELETE FROM requests WHERE user=? AND type=0', [$request['user']]);
 								echo '<h2>Email Verified</h2>';
 								echo '<a style="color: grey; text-decoration: none" class="btn" href="/pages/login.php">Log In</a>';
+								echo '<br><br>';
 							} else {
 								echo '<h2>Failed to Update Database</h2>';
 							}

@@ -45,7 +45,6 @@ function transTimeout(transition){
 function register(){
   request("/api/register.php", "register-form", (data)=> {
 
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     
@@ -67,7 +66,6 @@ function register(){
 function sendValidateEmailRequest(){
   request("/api/sendValidationEmail.php", "validate-email-form", (data)=> {
 
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     
@@ -89,7 +87,6 @@ function sendValidateEmailRequest(){
 function login(){
   request("/api/login.php", "login-form", (data)=> {
 
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     
@@ -119,7 +116,6 @@ function logout() {
 function deleteAccount() {
 	request('/api/deleteAccount.php', false, function(data) {
 
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     
@@ -139,7 +135,6 @@ function deleteAccount() {
 }
 function passwordResetRequest() {
 	request('/api/passwordResetRequest.php', 'reset-password-form', function(data) {
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     
@@ -159,7 +154,6 @@ function passwordResetRequest() {
 }
 function changePassword() {
 	request('/api/changePassword.php', 'change-password-form', function(data) {
-    console.log(data);
 
     const [transition, errList] = prepareMsgs();
     

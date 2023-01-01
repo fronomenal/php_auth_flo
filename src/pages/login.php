@@ -33,8 +33,6 @@
 			<br>
 			<a href="./reset-pass.php">Forgot your password? Reset it</a>
 			<br>
-			<a href="./register.php">Don't have an account? Sign Up</a>
-			<br>
 			<a href="./validate-email.php">Not Verified? Validate Email</a>
 		</form>
 

@@ -23,7 +23,6 @@ function sendValidationEmail($email) {
 						}
 					}
 					else {
-						// return 'failed to insert request';
 						return json_encode(array("count" => 1, "db_error" => "failed to initialize verification process. Please try again"));
 					}
 				}
