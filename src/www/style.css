@@ -84,6 +84,7 @@ form h1 {
 	padding: 12px 60px;
 	font-size: 18px;
 	border: 2px solid var(--color);
+	color: var(--color);
 	border-radius: 2px;
 	cursor: pointer;
 	-webkit-user-select: none;

@@ -41,6 +41,8 @@
 			<br><br>
 			<div class="btn" onclick="logout();">Log Out</div>
 			<br><br>
+			<a style="text-decoration: none" class="btn" href="/pages/reset-pass.php">Reset Password</a>
+			<br><br>
 			<div style="border-color: red;" class="btn" onclick="deleteAccount();">Delete Account</div>
 		</div>
 	
