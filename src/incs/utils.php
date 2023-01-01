@@ -14,7 +14,7 @@ function connect() {
 function sqlSelect($C, $query, $vars = false) {
 	$stmt = $C->prepare($query);
 	$res = null;
-	if($vars && $stmt->execute($vars)) $res = $stmt->fetch();
+	if($vars && $stmt->execute($vars)) $res = $stmt->fetch(PDO::FETCH_ASSOC);
 	else if($stmt->execute()) $res = $stmt->fetch(PDO::FETCH_ASSOC);
 	return $res;
 }
