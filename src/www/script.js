@@ -109,7 +109,7 @@ function login(){
 
 function logout() {
 	request('/api/logout.php', false, function(data) {
-		if(data === '0') {
+		if(data === 0) {
 			window.location = '/pages/login.php';
 		}
 	});
