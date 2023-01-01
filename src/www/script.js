@@ -115,3 +115,26 @@ function logout() {
 	});
 }
 
+
+function deleteAccount() {
+	request('/api/deleteAccount.php', false, function(data) {
+
+    console.log(data);
+
+    const [transition, errList] = prepareMsgs();
+    
+
+    if (data.count == 0){
+      window.location = '/pages/register.php';
+    }else{
+      for(const mem in data){
+        if (mem == "count") continue;
+        errList.innerHTML += `<div class="err">${mem} : ${data[mem]}</div>`;
+      }
+    }
+
+    transTimeout(transition);
+
+  })
+}
+
