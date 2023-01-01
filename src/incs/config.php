@@ -7,7 +7,7 @@
 	define('PASSWORD_RESET_REQUEST_EXPIRY_TIME', 60*60);
 	define('CSRF_TOKEN_SECRET', 'somethingsomethingsomesecret');
 	define('VALIDATE_EMAIL_ENDPOINT', 'http://localhost:8080/pages/validate-email.php');
-	define('RESET_PASSWORD_ENDPOINT', 'http://localhost:8080/pages/resetpassword');
+	define('RESET_PASSWORD_ENDPOINT', 'http://localhost:8080/pages/reset-pass.php');
 
 	// Database Credentials
 	define('DB_DATABASE', realpath('../../db/auth.db')? realpath('../../db/auth.db') : realpath('../db/auth.db'));

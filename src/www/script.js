@@ -137,4 +137,44 @@ function deleteAccount() {
 
   })
 }
+function passwordResetRequest() {
+	request('/api/passwordResetRequest.php', 'reset-password-form', function(data) {
+    console.log(data);
 
+    const [transition, errList] = prepareMsgs();
+    
+
+    if (data.count == 0){
+      errList.innerHTML += '<div>Please confirm account ownership here: <a href="/sec/fake-mail.php" target="_blank">Verify Mail</a></div>';
+      document.getElementById("reset-password-form").reset();
+    }else{
+      for(const mem in data){
+        if (mem == "count") continue;
+        errList.innerHTML += `<div class="err">${mem} : ${data[mem]}</div>`;
+      }
+    }
+
+    transTimeout(transition);
+	});
+}
+function changePassword() {
+	request('/api/changePassword.php', 'change-password-form', function(data) {
+    console.log(data);
+
+    const [transition, errList] = prepareMsgs();
+    
+
+    if (data.count == 0){
+      errList.innerHTML += '<div>Your password has been reset! You can now <a href="/pages/login.php">login</a></div>';
+      document.getElementById("change-password-form").reset();
+    }else{
+      for(const mem in data){
+        if (mem == "count") continue;
+        errList.innerHTML += `<div class="err">${mem} : ${data[mem]}</div>`;
+      }
+    }
+
+    transTimeout(transition);
+		
+	});
+}
