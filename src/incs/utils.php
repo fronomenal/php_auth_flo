@@ -3,10 +3,11 @@ require_once 'config.php';
 
 function connect() {
 	try {
+		if (!DB_DATABASE) throw new RuntimeException();
 		$C = new PDO("sqlite:" . DB_DATABASE);
 		$C->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		return $C;
-	} catch (PDOException) {
+	} catch (RuntimeException) {
 		return false;
 	}
 }
