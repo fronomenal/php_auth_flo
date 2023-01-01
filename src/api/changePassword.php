@@ -23,7 +23,7 @@
 			$errors["count"] += 1;
 		}
 
-		if(count($errors) === 0) {
+		if($errors["count"] === 0) {
 			if(isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 				
 				$C = connect();
@@ -38,7 +38,7 @@
 							if($request['timestamp'] >= time() - PASSWORD_RESET_REQUEST_EXPIRY_TIME) {
 								 
 								$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-								if(sqlUpdate($C, 'UPDATE users SET password=? WHERE id=?', $hash, [$request['user']])) {
+								if(sqlUpdate($C, 'UPDATE users SET password=? WHERE id=?', [$hash, $request['user']])) {
 									sqlUpdate($C, 'DELETE FROM requests WHERE user=? AND type=1', [$request['user']]);
 								} else {
 									$errors["db_error"] = 'failed to update password';
