@@ -7,7 +7,7 @@ function connect() {
 		$C = new PDO("sqlite:" . DB_DATABASE);
 		$C->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		return $C;
-	} catch (RuntimeException) {
+	} catch (RuntimeException $e) {
 		return false;
 	}
 }
