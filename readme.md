@@ -2,7 +2,7 @@
 
 A php server to demonstrate a feature full auth flow.
 
-Implements **login | logout**, **register | account deletion**, and **password change** all with mock email confirmation using sessions.
+Implements **login | logout**, **register | account deletion**, and **password change** all with mock email confirmation using sessions and special route.
 
 
 ## Technologies
@@ -22,7 +22,7 @@ Project makes use of no external packages
 
 ### Setup
 - Have php be installed and shell executable
-- Make sure the sqlite and pdo_sqlite extensions are enabled in your php.ini files.
+- Make sure the sqlite and pdo_sqlite extensions are enabled in your php.ini file.
 
 ### Launch
 In the root directory perform the following:
@@ -34,4 +34,4 @@ In the root directory perform the following:
 
 ## Misc
 **Please Note**
-    Even though this runs locally, the dns verification for email address requires internet access to register.
+    Even though this runs locally, the dns verification for email address requires internet access for account registration.
